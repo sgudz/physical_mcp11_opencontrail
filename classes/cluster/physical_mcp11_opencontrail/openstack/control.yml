@@ -1,0 +1,83 @@
+classes:
+
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.mcp.contrail
+- system.neutron.control.opencontrail.cluster
+- system.opencontrail.client.cluster
+- system.heat.server.resource.contrail
+- system.memcached.server.single
+- system.ceilometer.client
+- system.ceilometer.client.neutron
+- system.keystone.server.cluster
+- system.keystone.server.wsgi
+- system.glance.control.cluster
+- system.nova.control.cluster
+- system.cinder.control.cluster
+- system.cinder.volume.single
+- system.heat.server.cluster
+- system.haproxy.proxy.listen.openstack.nova-placement
+- system.haproxy.proxy.listen.openstack.glare
+- system.glusterfs.client.cluster
+- system.glusterfs.client.volume.glance
+- system.glusterfs.client.volume.keystone
+- cluster.physical_mcp11_opencontrail.infra
+parameters:
+  _param:
+    keepalived_vip_interface: ens3
+    keepalived_vip_virtual_router_id: 50
+    cluster_vip_address: ${_param:openstack_control_address}
+    cluster_local_address: ${_param:single_address}
+    cluster_node01_hostname: ctl01
+    cluster_node01_address: ${_param:openstack_control_node01_address}
+    cluster_node02_hostname: ctl02
+    cluster_node02_address: ${_param:openstack_control_node02_address}
+    cluster_node03_hostname: ctl03
+    cluster_node03_address: ${_param:openstack_control_node03_address}
+    nova_vncproxy_url: https://${_param:cluster_public_host}:6080
+  linux:
+    network:
+      interface:
+        ens3: ${_param:linux_single_interface}
+  opencontrail:
+    client:
+      linklocal_service:
+         # example with dns name address (only one permited)
+         meta1:
+           lls_ip: 10.0.0.23
+           lls_port: 80
+           ipf_addresses: "meta.example.com"
+           ipf_port: 80
+         # example with multiple ip addresses
+         meta2:
+           lls_ip: 10.0.0.23
+           lls_port: 80
+           ipf_addresses:
+           - 10.10.10.10
+           - 10.20.20.20
+           - 10.30.30.30
+           ipf_port: 80
+         # example with one ip address
+         meta3:
+           lls_ip: 10.0.0.23
+           lls_port: 80
+           ipf_addresses:
+           - 10.10.10.10
+           ipf_port: 80
+         # example name override
+         lls_meta4:
+           name: meta4
+           lls_ip: 10.0.0.23
+           lls_port: 80
+           ipf_addresses:
+           - 10.10.10.10
+           ipf_port: 80
+
+    # system:
+    #   repo:
+    #     glusterfs-ppa:
+    #       source: "deb http://ppa.launchpad.net/gluster/glusterfs-3.7/ubuntu trusty main"
+    #       architectures: amd64
+    #       key_id: 3FE869A9
+    #       key_server: keyserver.ubuntu.com

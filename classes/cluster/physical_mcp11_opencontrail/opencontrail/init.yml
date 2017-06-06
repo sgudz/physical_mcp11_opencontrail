@@ -1,0 +1,77 @@
+parameters:
+  _param:
+    # OpenContrail Control
+    opencontrail_analytics_address: 10.167.4.30
+    opencontrail_analytics_node01_address: 10.167.4.31
+    opencontrail_analytics_node02_address: 10.167.4.32
+    opencontrail_analytics_node03_address: 10.167.4.33
+    opencontrail_control_address: 10.167.4.20
+    opencontrail_control_node01_address: 10.167.4.21
+    opencontrail_control_node02_address: 10.167.4.22
+    opencontrail_control_node03_address: 10.167.4.23
+    opencontrail_gateway_node01_single_address: 10.167.4.200
+
+    opencontrail_data_node01_address: 10.167.5.21
+    opencontrail_data_node02_address: 10.167.5.22
+    opencontrail_data_node03_address: 10.167.5.23
+
+    # opencontrail service hostnames
+    opencontrail_analytics_hostname: nal
+    opencontrail_analytics_node01_hostname: nal01
+    opencontrail_analytics_node02_hostname: nal02
+    opencontrail_analytics_node03_hostname: nal03
+    opencontrail_control_hostname: ntw
+    opencontrail_control_node01_hostname: ntw01
+    opencontrail_control_node02_hostname: ntw02
+    opencontrail_control_node03_hostname: ntw03
+    opencontrail_gateway_node01_hostname: gtw01
+
+    opencontrail_version: 3.0
+    opencontrail_stats_password: password
+    opencontrail_compute_dns: 8.8.8.8
+    opencontrail_compute_gateway: 10.167.4.1
+    opencontrail_compute_iface: bond0.2428
+    opencontrail_compute_iface_mask: 24
+  linux:
+    network:
+      host:
+        ntw:
+          address: ${_param:opencontrail_control_address}
+          names:
+          - ${_param:opencontrail_control_hostname}
+          - ${_param:opencontrail_control_hostname}.${_param:cluster_domain}
+        ntw01:
+          address: ${_param:opencontrail_control_node01_address}
+          names:
+          - ${_param:opencontrail_control_node01_hostname}
+          - ${_param:opencontrail_control_node01_hostname}.${_param:cluster_domain}
+        ntw02:
+          address: ${_param:opencontrail_control_node02_address}
+          names:
+          - ${_param:opencontrail_control_node02_hostname}
+          - ${_param:opencontrail_control_node02_hostname}.${_param:cluster_domain}
+        ntw03:
+          address: ${_param:opencontrail_control_node03_address}
+          names:
+          - ${_param:opencontrail_control_node03_hostname}
+          - ${_param:opencontrail_control_node03_hostname}.${_param:cluster_domain}
+        nal:
+          address: ${_param:opencontrail_analytics_address}
+          names:
+          - ${_param:opencontrail_analytics_hostname}
+          - ${_param:opencontrail_analytics_hostname}.${_param:cluster_domain}
+        nal01:
+          address: ${_param:opencontrail_analytics_node01_address}
+          names:
+          - ${_param:opencontrail_analytics_node01_hostname}
+          - ${_param:opencontrail_analytics_node01_hostname}.${_param:cluster_domain}
+        nal02:
+          address: ${_param:opencontrail_analytics_node02_address}
+          names:
+          - ${_param:opencontrail_analytics_node02_hostname}
+          - ${_param:opencontrail_analytics_node02_hostname}.${_param:cluster_domain}
+        nal03:
+          address: ${_param:opencontrail_analytics_node03_address}
+          names:
+          - ${_param:opencontrail_analytics_node03_hostname}
+          - ${_param:opencontrail_analytics_node03_hostname}.${_param:cluster_domain}

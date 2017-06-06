@@ -1,0 +1,11 @@
+classes:
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
+- cluster.physical_mcp11_opencontrail.infra
+parameters:
+  linux:
+    network:
+      interface:
+        eth0: ${_param:linux_dhcp_interface}
+        eth1: ${_param:linux_single_interface}

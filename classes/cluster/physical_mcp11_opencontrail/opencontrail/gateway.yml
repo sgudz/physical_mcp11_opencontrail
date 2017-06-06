@@ -1,0 +1,57 @@
+classes:
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.trusty
+- cluster.physical_mcp11_opencontrail.infra
+parameters:
+  _param:
+    deploy_nic: enp3s0f0
+    primary_first_nic: enp3s0f1
+  linux:
+    network:
+      interface:
+        eth0:
+          enabled: true
+          type: eth
+          proto: manual
+          name: ${_param:deploy_nic}
+        eth1:
+          enabled: true
+          type: eth
+          proto: manual
+          name: ${_param:primary_first_nic}
+          master: bond0
+        eth0.2428:
+          enabled: true
+          name: ${_param:primary_first_nic}.2428
+          proto: manual
+          type: vlan
+          use_interfaces:
+          - ${_param:primary_first_nic}
+        br_mgm:
+          enabled: true
+          proto: dhcp
+          type: bridge
+          use_interfaces:
+          - ${_param:deploy_nic}
+        # eth0.2423:
+        #   name: ${_param:primary_first_nic}.2423
+        #   enabled: true
+        #   proto: manual
+        #   type: vlan
+        #   use_interfaces:
+        #   - ${_param:primary_first_nic}
+        br_ctl:
+          enabled: true
+          type: bridge
+          proto: static
+          address: ${_param:single_address}
+          netmask: 255.255.255.0
+          use_interfaces:
+          - ${_param:primary_first_nic}.2428
+        # br_data:
+        #   enabled: true
+        #   type: bridge
+        #   proto: manual
+        #   use_interfaces:
+        #   - ${_param:primary_first_nic}.2423

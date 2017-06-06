@@ -1,0 +1,103 @@
+classes:
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.ubuntu
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.mcp.contrail
+- system.nova.compute.cluster
+- system.opencontrail.compute.cluster
+- system.opencontrail.client.cluster
+- system.opencontrail.client.resource.virtual_router
+- system.ceilometer.agent.cluster
+- cluster.physical_mcp11_opencontrail.infra
+parameters:
+  _param:
+    cluster_vip_address: ${_param:openstack_control_address}
+    cluster_local_address: ${_param:control_address}
+    cluster_node01_hostname: ctl01
+    cluster_node01_address: ${_param:openstack_control_node01_address}
+    cluster_node02_hostname: ctl02
+    cluster_node02_address: ${_param:openstack_control_node02_address}
+    cluster_node03_hostname: ctl03
+    cluster_node03_address: ${_param:openstack_control_node03_address}
+    opencontrail_compute_address: ${_param:single_address}
+    nova_vncproxy_url: https://${_param:cluster_public_host}:6080
+    deploy_nic: enp3s0f0
+    primary_first_nic: enp3s0f1
+    primary_second_nic: enp5s0f0
+  linux:
+    network:
+      interface:
+#        eth0:
+#          enabled: true
+#          type: eth
+#          proto: dhcp
+#         name: ${_param:deploy_nic}
+        eth1:
+          enabled: true
+          name: ${_param:primary_first_nic}
+          type: slave
+          master: bond0
+          mtu: 9000
+          pre_up_cmds:
+          - /sbin/ethtool --offload ${_param:primary_first_nic} rx off tx off tso off gro off
+        eth2:
+          enabled: true
+          name: ${_param:primary_second_nic}
+          type: slave
+          master: bond0
+          mtu: 9000
+          pre_up_cmds:
+          - /sbin/ethtool --offload ${_param:primary_second_nic} rx off tx off tso off gro off
+        bond0:
+          enabled: true
+          proto: manual
+          type: bond
+          use_interfaces:
+          - ${_param:primary_first_nic}
+          - ${_param:primary_second_nic}
+          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
+          mode: active-backup
+          mtu: 9000
+        bond0.2428:
+          enabled: true
+        #  proto: static
+          proto: manual
+          type: vlan
+          use_interfaces:
+          - bond0
+          # address: ${_param:control_address}
+          # netmask: 255.255.255.0
+        # bond0.2429:
+        #   enabled: true
+        #   proto: manual
+        #   type: vlan
+        #   use_interfaces:
+        #   - bond0
+        vhost0:
+          enabled: true
+          type: eth
+          mtu: 9000
+          address: ${_param:single_address}
+          netmask: 255.255.255.0
+          pre_up_cmds:
+          - /usr/lib/contrail/if-vhost0
+          use_interfaces:
+  #        - bond0.2429
+          - bond0.2428
+          name_servers:
+          - 8.8.8.8
+          - 8.8.4.4
+    system:
+      user:
+        root:
+          enabled: true
+          name: root
+          home: /root
+          # Password is cloudlab, comment out, configure your SSH key bellow
+          # and disable password auth
+          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
+  opencontrail:
+    common:
+      network:
+        host: ${_param:openstack_control_address}
