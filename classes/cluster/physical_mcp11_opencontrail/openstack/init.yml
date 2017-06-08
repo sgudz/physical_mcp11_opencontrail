@@ -51,6 +51,13 @@ parameters:
     openstack_telemetry_node02_hostname: mdb02
     openstack_telemetry_node03_hostname: mdb03
 
+    stacklight_log_address: 10.167.4.75
+    stacklight_telemetry_node01_address: 10.167.4.76
+    stacklight_telemetry_node02_address: 10.167.4.77
+    stacklight_telemetry_node03_address: 10.167.4.78
+    stacklight_telemetry_address: 10.167.4.75
+    stacklight_environment: stacklight
+
     # openstack compute
     openstack_compute_node01_hostname: cmp001
     openstack_compute_node02_hostname: cmp002
