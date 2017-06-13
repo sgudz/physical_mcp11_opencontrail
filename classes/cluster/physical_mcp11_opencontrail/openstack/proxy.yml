@@ -13,6 +13,7 @@ classes:
 - service.keepalived.cluster.single
 - cluster.physical_mcp11_opencontrail.infra
 - cluster.physical_mcp11_opencontrail.openstack.dashboard
+#- cluster.physical_mcp11_opencontrail.stacklight.proxy
 parameters:
   _param:
     keepalived_vip_interface: ens3

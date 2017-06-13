@@ -7,6 +7,8 @@ classes:
 - system.openssh.server.team.mcp_qa
 - cluster.physical_mcp11_opencontrail.openstack
 - cluster.physical_mcp11_opencontrail.opencontrail
+#- cluster.physical_mcp11_opencontrail.stacklight
+#- cluster.physical_mcp11_opencontrail.stacklight.client
 parameters:
   _param:
     salt_control_trusty_image: http://apt-mk.mirantis.com/images/ubuntu-14-04-x64-mcp1.1.qcow2
@@ -16,6 +18,7 @@ parameters:
     apt_mk_version: nightly
     mcp_repo_version: 1.1
     cluster_domain: mcp11-opencontrail.local
+#    stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
     cluster_name: physical_mcp11_opencontrail
     cluster_public_host: ${_param:openstack_proxy_address}
@@ -25,7 +28,8 @@ parameters:
     #linux_repo_refresh_db: True
 
     # infra service addresses
-    infra_config_address: 10.167.4.90
+#    infra_config_address: 10.167.4.90
+    infra_config_address: 172.17.32.194
     infra_config_deploy_address: 172.17.32.194
     infra_compute_node01_address: 10.167.4.241
     infra_compute_node02_address: 10.167.4.242

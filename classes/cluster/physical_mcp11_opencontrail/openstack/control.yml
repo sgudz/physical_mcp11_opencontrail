@@ -1,5 +1,4 @@
 classes:
-
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
@@ -8,8 +7,8 @@ classes:
 - system.opencontrail.client.cluster
 - system.heat.server.resource.contrail
 - system.memcached.server.single
-- system.ceilometer.client
-- system.ceilometer.client.neutron
+#- system.ceilometer.client
+#- system.ceilometer.client.neutron
 - system.keystone.server.cluster
 - system.keystone.server.wsgi
 - system.glance.control.cluster
@@ -17,7 +16,7 @@ classes:
 - system.cinder.control.cluster
 - system.cinder.volume.single
 - system.heat.server.cluster
-- system.haproxy.proxy.listen.openstack.nova-placement
+#- system.haproxy.proxy.listen.openstack.nova-placement
 - system.haproxy.proxy.listen.openstack.glare
 - system.glusterfs.client.cluster
 - system.glusterfs.client.volume.glance

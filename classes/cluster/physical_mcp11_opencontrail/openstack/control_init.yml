@@ -1,26 +1,26 @@
 classes:
 - system.keystone.client.single
-- system.keystone.client.service.ceilometer
+#- system.keystone.client.service.ceilometer
 - system.keystone.client.service.nova21
-- system.keystone.client.service.nova-placement
-- system.keystone.client.service.aodh
+#- system.keystone.client.service.nova-placement
+#- system.keystone.client.service.aodh
 - system.keystone.client.service.glare
 - system.keystone.client.service.cinder3
-parameters:
-  nova:
-    client:
-      enabled: true
-      server:
-        identity:
-          flavor:
-            m1.small:
-              flavor_id: auto
-              ram: 4096
-              disk: 10
-              vcpus: 1
-            m1.medium:
-              flavor_id: auto
-              ram: 4096
-              disk: 40
-              vcpus: 2
+#parameters:
+#  nova:
+#    client:
+#      enabled: true
+#      server:
+#        identity:
+#          flavor:
+#            m1.small:
+#              flavor_id: auto
+#              ram: 4096
+#              disk: 10
+#              vcpus: 1
+#            m1.medium:
+#              flavor_id: auto
+#              ram: 4096
+#              disk: 40
+#              vcpus: 2
 

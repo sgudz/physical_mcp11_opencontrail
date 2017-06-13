@@ -8,7 +8,7 @@ classes:
 - system.opencontrail.compute.cluster
 - system.opencontrail.client.cluster
 - system.opencontrail.client.resource.virtual_router
-- system.ceilometer.agent.cluster
+#- system.ceilometer.agent.cluster
 - cluster.physical_mcp11_opencontrail.infra
 parameters:
   _param:

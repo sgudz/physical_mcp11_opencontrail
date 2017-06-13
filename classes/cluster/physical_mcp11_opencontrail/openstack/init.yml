@@ -21,6 +21,13 @@ parameters:
     openstack_telemetry_node02_address: 10.167.4.77
     openstack_telemetry_node03_address: 10.167.4.78
 
+    stacklight_log_address: 10.167.4.75
+    stacklight_telemetry_node01_address: 10.167.4.76
+    stacklight_telemetry_node02_address: 10.167.4.77
+    stacklight_telemetry_node03_address: 10.167.4.78
+    stacklight_telemetry_address: 10.167.4.75
+    stacklight_environment: stacklight
+
     # openstack compute
     openstack_compute_node01_single_address: 10.167.4.101
     openstack_compute_node02_single_address: 10.167.4.102
@@ -50,13 +57,6 @@ parameters:
     openstack_telemetry_node01_hostname: mdb01
     openstack_telemetry_node02_hostname: mdb02
     openstack_telemetry_node03_hostname: mdb03
-
-    stacklight_log_address: 10.167.4.75
-    stacklight_telemetry_node01_address: 10.167.4.76
-    stacklight_telemetry_node02_address: 10.167.4.77
-    stacklight_telemetry_node03_address: 10.167.4.78
-    stacklight_telemetry_address: 10.167.4.75
-    stacklight_environment: stacklight
 
     # openstack compute
     openstack_compute_node01_hostname: cmp001
@@ -126,6 +126,7 @@ parameters:
     mongodb_shared_key: passwordpasswordpasswordpassword
     metadata_password: password
     openstack_telemetry_keepalived_password: password
+    mysql_grafana_password: password
     # Billing
     #keystone_billometer_password: password
     #keystone_billometer_address: ${_param:billometer_service_host}

@@ -15,6 +15,9 @@ classes:
 - system.salt.control.cluster.openstack_database_cluster
 - system.salt.control.cluster.openstack_message_queue_cluster
 - system.salt.control.cluster.openstack_telemetry_cluster
+#- system.salt.control.cluster.stacklight_server_cluster
+#- system.salt.control.cluster.stacklight_log_cluster
+#- system.salt.control.cluster.stacklight_telemetry_cluster
 - cluster.physical_mcp11_opencontrail.infra
 parameters:
   _param:
@@ -66,6 +69,21 @@ parameters:
           ram: 8192
           disk_profile: large
           net_profile: default
+#        stacklight.log:
+#          cpu: 4
+#          ram: 4096
+#          disk_profile: xxlarge
+#          net_profile: default
+#        stacklight.server:
+#          cpu: 4
+#          ram: 4096
+#          disk_profile: small
+#          net_profile: default
+#        stacklight.telemetry:
+#          cpu: 4
+#          ram: 2048
+#          disk_profile: xxlarge
+#          net_profile: default
       cluster:
         internal:
           node:
